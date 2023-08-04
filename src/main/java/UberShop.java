@@ -1,5 +1,6 @@
 package main.java;
 
+import javax.print.attribute.standard.OrientationRequested;
 import java.util.Arrays;
 
 /**
@@ -134,6 +135,35 @@ public class UberShop {
             index++;
         }
         return mergedStock;
+
+/*        OR
+        String[] result = new String[showcaseStocks.length + warehouseStocks.length];
+
+        int index = 0;
+        for(String stock: showcaseStocks) {
+            result[index] = stock;
+            index++;
+        }
+
+        for(String stock: warehouseStocks) {
+            result[index] = stock;
+            index++;
+        }
+
+        return result;  */
+    }
+
+    public int getPricesSum(int[] prices, int minPrice, int maxPrice) {
+
+        int sum = 0;
+
+        for (int price: prices) {
+            if ((price >= minPrice) && (price <= maxPrice)) {
+                sum += price;
+            }
+        }
+        return sum;
+
     }
 
 
@@ -166,10 +196,16 @@ public class UberShop {
         int[] prices = new int[] {399, 1599, 399, 50, 10, 10, 70};
         System.out.println(Arrays.toString(shop.leavePrice9(prices)));*/
 
-        //Final result should be ["gun", "firebow", "firegun"]
+/*        //Final result should be ["gun", "firebow", "firegun"]
         String[] showcaseStocks = new String[] {"gun", "firebow"};
         String[] warehouseStocks = new String[] {"firegun"};
-        System.out.println(Arrays.toString(shop.mergeStocks(showcaseStocks, warehouseStocks)));
+        System.out.println(Arrays.toString(shop.mergeStocks(showcaseStocks, warehouseStocks)));*/
+
+        //Should be 144 - 20 + 50 + 40 + 34
+        int[] prices = new int[] {10, 20, 50, 40, 34, 500};
+        System.out.println(shop.getPricesSum(prices, 20, 50));
+
+
 
     }
 }
