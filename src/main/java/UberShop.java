@@ -122,6 +122,19 @@ public class UberShop {
         }
         return chornaPyatnytsya;
     }
+    public String[] mergeStocks(String[] showcaseStocks, String[] warehouseStocks) {
+        if ((showcaseStocks.length == 0) && (warehouseStocks.length == 0)) {
+            return new String[0];
+        }
+        int mergeStocksLength = showcaseStocks.length + warehouseStocks.length;
+        int index = showcaseStocks.length;
+        String[] mergedStock = Arrays.copyOf(showcaseStocks, mergeStocksLength);
+        for (int i = 0; i < warehouseStocks.length; i++) {
+            mergedStock[index] = warehouseStocks[i];
+            index++;
+        }
+        return mergedStock;
+    }
 
 
 
@@ -149,9 +162,14 @@ public class UberShop {
         int toRemove = 100;
         System.out.println(Arrays.toString(shop.removePrice(prices, toRemove)));*/
 
-        //Should be [1599, 399]
+/*        //Should be [1599, 399]
         int[] prices = new int[] {399, 1599, 399, 50, 10, 10, 70};
-        System.out.println(Arrays.toString(shop.leavePrice9(prices)));
+        System.out.println(Arrays.toString(shop.leavePrice9(prices)));*/
+
+        //Final result should be ["gun", "firebow", "firegun"]
+        String[] showcaseStocks = new String[] {"gun", "firebow"};
+        String[] warehouseStocks = new String[] {"firegun"};
+        System.out.println(Arrays.toString(shop.mergeStocks(showcaseStocks, warehouseStocks)));
 
     }
 }
