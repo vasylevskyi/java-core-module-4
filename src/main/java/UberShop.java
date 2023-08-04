@@ -69,6 +69,59 @@ public class UberShop {
         }
         return counter;
     }
+    public int[] removePrice(int[] prices, int toRemove) {
+        int counter = 0;
+        int[] priceIsRemoved = new int[0];
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] != toRemove) {
+                priceIsRemoved = Arrays.copyOf(priceIsRemoved, priceIsRemoved.length + 1);
+                priceIsRemoved[counter] = prices[i];
+                counter++;
+            }
+        }
+        return priceIsRemoved;
+
+/*        АБО краще:
+        int toRemoveCount = 0;
+        for(int price: prices) {
+            if (price == toRemove) {
+                toRemoveCount++;
+            }
+        }
+
+        int[] result = new int[prices.length - toRemoveCount];
+        int index = 0;
+        for(int price: prices) {
+            if (price != toRemove) {
+                result[index] = price;
+                index++;
+            }
+        }
+
+        return result;*/
+    }
+
+    public int[] leavePrice9(int[] prices) {
+        if (prices.length  == 0) {
+            return prices;
+        }
+        int newArrayLength = 0;
+        for (int price: prices) {
+            if (price % 10 == 9) {
+                newArrayLength++;
+            }
+        }
+
+        int[] chornaPyatnytsya = new int[newArrayLength];
+        int index = 0;
+        for (int price: prices) {
+            if (price % 10 == 9) {
+                chornaPyatnytsya[index] = price;
+                index++;
+            }
+        }
+        return chornaPyatnytsya;
+    }
 
 
 
@@ -82,15 +135,23 @@ public class UberShop {
 //        System.out.println(Arrays.toString(prices));
 
 
-        //Should be [50, 1500]
-//        int[] prices = new int[]{100, 1500, 300, 50};
-//        int[] minMax = shop.findMinMaxPrices(prices);
-//        System.out.println(Arrays.toString(minMax));
+/*        //Should be [50, 1500]
+        int[] prices = new int[]{100, 1500, 300, 50};
+        int[] minMax = shop.findMinMaxPrices(prices);
+        System.out.println(Arrays.toString(minMax));*/
 
-//        int[] prices = new int[] {100, 1500, 300, 50, 10, 10, 70};
+/*        //Should be 2
+        int[] prices = new int[] {100, 1500, 300, 50, 10, 10, 70};
+        System.out.println(shop.getMinPriceCount(prices)); */
 
-        int[] prices = new int[0];
-        System.out.println(shop.getMinPriceCount(prices)); //Should be 2
+/*        //Should be [150, 200]
+        int[] prices = new int[]{150, 100, 200};
+        int toRemove = 100;
+        System.out.println(Arrays.toString(shop.removePrice(prices, toRemove)));*/
+
+        //Should be [1599, 399]
+        int[] prices = new int[] {399, 1599, 399, 50, 10, 10, 70};
+        System.out.println(Arrays.toString(shop.leavePrice9(prices)));
 
     }
 }
